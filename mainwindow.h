@@ -10,6 +10,7 @@
 #include <QFileInfo>
 #include <QFileInfoList>
 #include <QSet>
+#include <QDesktopServices>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -46,6 +47,8 @@ private slots:
     void on_pushButtonStartActions_clicked();
 
     void on_pushButtonSelectConfDir_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

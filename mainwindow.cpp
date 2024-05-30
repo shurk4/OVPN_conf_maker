@@ -170,9 +170,10 @@ void MainWindow::makeConfigFile(const QString &path, const QString &name, const 
 {
     QString filename = path + "/" + name + ".ovpn";
     QFile file(filename);
-    if (file.open(QIODevice::ReadWrite)) {
+    if (file.open(QIODevice::WriteOnly)) {
         QTextStream stream(&file);
         stream << config;
+        qDebug() << "Created config file: " << filename;
         file.close();
     }
     else
@@ -222,8 +223,14 @@ void MainWindow::on_pushButtonStartActions_clicked()
     for(const auto &i : qAsConst(clientsList))
     {
         QString config = getConfig(i);
-        makeConfigFile(ui->labelConfDir->text(), i, config);
+        makeConfigFile(confDir, i, config);
     }
     ui->statusBar->showMessage("The creation of configuration files is completed");
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    QDesktopServices::openUrl(confDir);
 }
 
